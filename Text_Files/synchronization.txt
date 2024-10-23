@@ -1,0 +1,114 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+
+/* ->Array decleration in java
+    int[] arr = new int[n];
+    private int[] arr;
+    arr = new int[n];
+  ->For the parameterized constructor if we want to access 
+  parameter inside the parent class we will have the constructor intilzed in the class
+    
+                                     */
+
+
+class Stack {
+    private int[] array;
+    private int stackTop;
+    Object lock;
+    //Getting values from the constructor.
+    public Stack(int size)
+    {
+        array = new int[size];
+        stackTop = -1;
+        lock = new Object();
+    }
+    //Adding elements into the stack
+    public boolean push(int ele)
+    {
+       synchronized(lock){
+           if(isFull()) return false;
+        ++stackTop;
+        //Making the thread sleep for sec to understand sync.
+        try{
+            Thread.sleep(1000);
+        }
+        catch(Exception e){}
+        array[stackTop] = ele;
+        return true;
+       }   
+    }
+    //Removing the element form the stack
+    public int pop()
+    {
+      synchronized(lock){
+        if(isEmpty()) return Integer.MIN_VALUE;
+        int obj = array[stackTop];
+        //Making the thread sleep for sec to understand sync.
+        try{
+            Thread.sleep(1000);
+        }
+        catch(Exception e){}
+        array[stackTop] = Integer.MIN_VALUE;
+        --stackTop;
+        return obj;
+       }
+    }
+    
+    //Checking is tsck is empty
+    public boolean isEmpty(){
+        return stackTop<0;
+    }
+    //Checking if the stack is full
+    public boolean isFull(){
+        return stackTop>=array.length-1;
+    }
+    
+}
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Understanding the concept of synchronization");
+        //Intilizing the conmstructor with the size of array.
+        Stack st = new Stack(10);
+        //Using the thread to push the elements into stack.
+        new Thread(()->
+        {
+            int cnt=0;
+            while(++cnt<10) {
+        System.out.println("Pushed element is "+st.push(100));
+             }
+        }).start();
+        //Using the thread to pop the elements out of stack.
+        new Thread(()->
+        {
+            int cnt=0;
+        while(++cnt<10) {
+        System.out.println("Popped element is "+st.pop());
+        }
+        }).start();
+    }
+}
+
+
+OUTPUT:
+Understanding the concept of synchronization
+Pushed element is true
+Popped element is 100
+Pushed element is true
+Pushed element is true
+Popped element is 100
+Pushed element is true
+Popped element is 100
+Pushed element is true
+Popped element is 100
+Pushed element is true
+Popped element is 100
+Pushed element is true
+Popped element is 100
+Pushed element is true
+Popped element is 100
+Pushed element is true
+Popped element is 100
+Popped element is 100
+
+=== Code Execution Successful ===

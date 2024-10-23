@@ -1,0 +1,110 @@
+->Diffrent ways of creating the streams:
+import java.util.*;
+import java.util.stream.*;
+ 
+public class Main{
+    public static void main(String[] args) {
+        //Converting List to steam:
+    //   List<Integer> salaryList = new ArrayList<>();
+    //     salaryList.add(3000);
+    //     salaryList.add(4000);
+    //     salaryList.add(2000);
+    //     salaryList.add(3400);
+    
+    //Converting array to strem;
+    //   Stream<Integer> st ;
+    //   Integer[] arr = {1,2,3,4,5};
+    //   st = Arrays.stream(arr);
+    //   st.forEach(System.out::println);
+       
+    //Creating a static stream:
+    // Stream<Integer> st = Stream.of(1,2,3,4,5);
+    // st.forEach(System.out::println);
+    
+    
+    //Using the stream builder.
+    // Stream.Builder<Integer> sb = Stream.builder();
+    // sb.add(10).add(20).add(30).add(40);
+    // Stream<Integer> st = sb.build();
+    // st.forEach(System.out::println);
+    
+    
+    //using Stream iterator:
+     Stream<Integer> st = Stream.iterate(100,((n)->n+10)).limit(11);
+     st.forEach(System.out::println);
+    }
+   
+}
+
+
+
+Intermediat operations:
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+import java.util.stream.*;
+ 
+public class Main{
+    public static void main(String[] args) {
+       /*Intermediate Operatons:
+       1.Filter:filters ele based on the condition.
+       2.Map : Used to transform each element.
+       3.flatMap:make complex collections to flat one.
+       4.distint
+       5.sorted(Assending , decending order)
+       6.limit(long n):limit the size of stream upto n.
+       7.skip(long n):skips fist n ele of stream
+       */
+       
+    //   List<Integer> numbers = Arrays.asList(1,2,3,4,5,5,7,9,9);
+    //   List<String> words = Arrays.asList("hello","every","one","in","the","chat");
+    //   //Creating two streams for the above collection entities.
+    //   Stream<Integer> numberStream = numbers.stream();
+    //   Stream<String> wordStream = words.stream();
+       //Filter example:
+    //   Stream<Integer> filteredNumbers = numberStream.filter((Integer num) -> num<5);
+    //   Stream<String> filterWords = wordStream.filter((String word) -> word.length()>3);
+    //   //printing the final ouput streams.
+    //   filteredNumbers .forEach(System.out::println);
+    //   filterWords.forEach(System.out::println);
+       
+       //Map Example:
+    //   Stream<Integer> filteredNumbers = numberStream.map((Integer num) -> num*5);
+    //   Stream<String> filterWords = wordStream.map((String word) -> word.toUpperCase());
+    //   //printing the final ouput streams.
+    //   filteredNumbers .forEach(System.out::println);
+    //   filterWords.forEach(System.out::println);
+       
+       //Distint Example:
+    //   Stream<Integer> dintinctdNumbers = numberStream.distinct();
+       
+    //   distinctNumbers .forEach(System.out::println);
+    
+     //limit(long n) and skip(long n)
+     //Stream<Integer> limitStream =numberStream.limit(4) ;
+     //Stream<Integer> skipStream = numberStream.skip(3);
+    // limitStream.forEach(System.out::println);
+     //skipStream.forEach(System.out::println);
+     
+     
+     //flatMap:make complex collections to flat one.
+     
+     List<List<String>> arrayOfString = new ArrayList<>();
+     arrayOfString.add(Arrays.asList("i","love","java"));
+     arrayOfString.add(Arrays.asList("it","is","easy"));
+     Stream<String> words = arrayOfString.stream().flatMap((List<String> str) -> str.stream());
+     words.forEach(System.out::println);
+     
+    }
+   
+}
+
+
+
+
+https://dev8010.dev.e2open.com/myprofile/settings.php
+
+
+DB Password:
+username: sn_usr
+password: shipnowdb

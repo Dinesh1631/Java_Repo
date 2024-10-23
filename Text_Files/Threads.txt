@@ -1,0 +1,53 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Main Thread started here");
+        
+        Thread thread1 = new Thread1();
+        //thread1.setDaemon(true);
+        thread1.start();
+        
+        Thread thread2 = new Thread(new Thread2());
+        //thread2.setDaemon(true);
+        //The setDaemon method used the make the thread daemon.
+        thread2.start();
+        
+        System.out.println("Main Thread ended here");
+    }
+}
+//This belongs to thread1(extends threads class).
+class Thread1 extends Thread{
+    // @override
+    public void run(){
+        for(int i =0;i<5;i++)
+        {
+        System.out.println(Thread.currentThread()+","+i);
+        }
+    }
+}
+//This belongs to thread2(Implements runnable interface).
+class Thread2 implements Runnable{
+    // @override
+    public void run(){
+        for(int i =0;i<5;i++)
+        {
+        System.out.println("This belongs to Thread2 "+ i);
+        }
+    }
+}
+
+output:
+Main Thread started here
+Main Thread ended here
+This belongs to Thread2 0
+This belongs to Thread2 1
+This belongs to Thread2 2
+This belongs to Thread2 3
+This belongs to Thread2 4
+Thread[Thread-0,5,main],0
+Thread[Thread-0,5,main],1
+Thread[Thread-0,5,main],2
+Thread[Thread-0,5,main],3
+Thread[Thread-0,5,main],4

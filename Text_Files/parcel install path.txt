@@ -1,0 +1,12 @@
+parcel install path
+ 
+\\DEV8018\Shared\Parcel\Installs
+ 
+DATA FOLDER BACKUP PATH
+ 
+\\dev8009\tpsfs1_QA\Flagship\Testing\Data backup
+ 
+FINAL RELEASE PATHS
+ 
+\\dev8009\tpsfs1_QA\Flagship\Final Releases
+ 

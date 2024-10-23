@@ -1,0 +1,41 @@
+->Example for checked exceptions.
+
+public class Main{
+
+    public static void main(String[] args) throws ClassNotFoundException{
+        System.out.println("Next step causes exception");
+        try{
+        method();    
+        }
+        catch(Exception e){
+             System.out.println("The exception got handled in catch block");
+        }
+         System.out.println("Main got execution finished");
+       
+    }
+    public static void method() throws ClassNotFoundException{
+         throw new ClassNotFoundException();
+    }
+}
+
+
+->example for custom exception:
+class myCustomException extends Exception{
+    myCustomException(String str ){
+        super(str);
+    }
+}
+public class Main{
+    public static void main(String[] args) {
+        try{
+            method();
+        }
+        catch(Exception e)
+        {
+            System.out.println(e.toString());
+        }
+    }
+    public static void method() throws myCustomException{
+        throw new myCustomException("There is an issue");
+    }
+}
